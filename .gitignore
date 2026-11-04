@@ -1,0 +1,45 @@
+# ==================== VIRTUAL ENVIRONMENT ====================
+.venv/
+venv/
+env/
+
+# ==================== ENVIRONMENT VARIABLES ====================
+.env
+.env.*
+!.env.example
+
+# ==================== PYTHON CACHE ====================
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ==================== JUPYTER NOTEBOOK ====================
+.ipynb_checkpoints/
+
+# ==================== PERSONAL CV FILES ====================
+data/*.pdf
+
+# ==================== UPLOADED DOCUMENTS ====================
+static/docs/*
+!static/docs/.gitkeep
+
+# ==================== GENERATED OUTPUTS ====================
+static/output/*
+!static/output/.gitkeep
+answers.txt
+
+# ==================== LOCAL DATABASES ====================
+*.db
+*.sqlite3
+
+# ==================== EDITOR FILES ====================
+.vscode/
+.idea/
+
+# ==================== SYSTEM FILES ====================
+.DS_Store
+Thumbs.db
+
+# Local development notebook
+experiment.ipynb
