@@ -43,3 +43,9 @@ Thumbs.db
 
 # Local development notebook
 experiment.ipynb
+
+# Local-only screenshots
+/assets/screenshots/6.png
+/assets/screenshots/AI Interview Creator UI Showcase.png
+/assets/screenshots/AI Interview Creator UI Showcase2.png
+/assets/screenshots/AI Interview Creator UI Showcase3.png
