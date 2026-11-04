@@ -5,6 +5,11 @@ from werkzeug.utils import secure_filename
 from uuid import uuid4
 import markdown
 import bleach
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 from src.helper import (
     load_pdf,
@@ -53,7 +58,7 @@ app.jinja_env.filters["markdown"] = render_markdown
 # ==================== SESSION MANAGEMENT ====================
 
 # Secret key for local development only
-app.secret_key = "local-dev-secret-change-before-deployment"
+app.secret_key = os.environ["FLASK_SECRET_KEY"]
 
 # Temporary server-side storage for interview sessions
 interview_sessions = {}
@@ -238,6 +243,6 @@ def generate_more():
 
 if __name__ == "__main__":
     app.run(
-        debug=True,
+        debug=False,
         use_reloader=False
     )
