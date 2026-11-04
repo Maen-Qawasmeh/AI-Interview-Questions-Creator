@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interview Questions Creator</title>
+
+    <!-- Application Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+
+    <header class="navbar">
+        <div class="container nav-content">
+
+            <div class="brand">
+                <span class="brand-icon">✦</span>
+                <span>AI Interview Creator</span>
+            </div>
+
+            <span class="nav-label">Powered by Qwen + RAG</span>
+
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- ==================== HERO SECTION ==================== -->
+
+        <section class="hero">
+
+            <span class="eyebrow">
+                YOUR AI INTERVIEW ASSISTANT
+            </span>
+
+            <h1>
+                Prepare Smarter for Your
+                <span class="gradient-text">Next Interview.</span>
+            </h1>
+
+            <p>
+                Upload your CV and generate personalized technical
+                interview questions with AI-powered answers.
+            </p>
+
+        </section>
+
+
+        <!-- ==================== PDF UPLOAD ==================== -->
+
+        <section class="upload-card">
+
+            <div class="section-heading">
+
+                <span class="section-icon">📄</span>
+
+                <div>
+                    <h2>Upload Your CV</h2>
+                    <p>Start by uploading your resume in PDF format.</p>
+                </div>
+
+            </div>
+
+            <!-- CV Upload Form -->
+            <form
+                action="/"
+                method="POST"
+                enctype="multipart/form-data"
+                class="upload-form"
+            >
+
+                <label for="pdf_file" class="upload-zone">
+
+                    <span class="upload-symbol">↑</span>
+
+                    <strong>Choose your CV</strong>
+
+                    <span>PDF files only</span>
+
+                    <input
+                        type="file"
+                        id="pdf_file"
+                        name="pdf_file"
+                        accept=".pdf"
+                        required
+                    >
+
+                </label>
+
+                <button type="submit" class="btn btn-primary">
+                    Generate Interview Questions
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ==================== GENERATED RESULTS ==================== -->
+
+        {% if answers %}
+
+        <section class="results-section">
+
+            <!-- Results Header -->
+            <div class="results-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        YOUR PERSONALIZED PREPARATION
+                    </span>
+
+                    <h2>Interview Questions & Answers</h2>
+
+                    <p>
+                        Review the questions and prepare for your next interview.
+                    </p>
+
+                </div>
+
+                <!-- Generated Answers Counter -->
+                <div class="results-count">
+
+                    <strong>{{ answers|length }}</strong>
+
+                    <span>Answers Generated</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================== QUESTION CARDS ==================== -->
+
+            <div class="questions-list">
+
+                {% for item in answers %}
+
+                <article class="question-card">
+
+                    <!-- Question Number -->
+                    <div class="question-heading">
+
+                        <span class="question-number">
+                            QUESTION {{ "%02d"|format(loop.index) }}
+                        </span>
+
+                    </div>
+
+                    <!-- Interview Question -->
+                    <h3>{{ item.question }}</h3>
+
+                    <!-- ==================== AI ANSWER ==================== -->
+
+                    <div class="answer-content">
+
+                        <span class="answer-label">
+                            AI GENERATED ANSWER
+                        </span>
+
+                        <!-- Render sanitized Markdown as formatted HTML -->
+                        <div class="answer-text">
+                            {{ item.answer | markdown | safe }}
+                        </div>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ==================== GENERATE MORE QUESTIONS ==================== -->
+
+            <div class="load-more">
+
+                {% if has_more %}
+
+                <!-- Generate the next batch of 5 questions -->
+                <form action="/generate-more" method="POST">
+
+                    <button type="submit" class="btn btn-more">
+                        + Generate 5 More Questions
+                    </button>
+
+                </form>
+
+                {% else %}
+
+                <!-- Display completion message -->
+                <p class="completion-message">
+                    ✓ All available interview questions have been generated!
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <!-- Application Information -->
+            <p>
+                AI Interview Questions Creator •
+                Powered by Ollama, Qwen & RAG
+            </p>
+
+            <!-- Developer Credit -->
+            <p class="developer-credit">
+                Designed & Developed by
+                <a
+                    href="https://www.linkedin.com/in/maen-qawasmeh-951ba0211/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Maen Qawasmeh
+                </a>
+            </p>
+
+            <!-- Copyright -->
+            <p class="copyright">
+                &copy; 2026 Maen Qawasmeh. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

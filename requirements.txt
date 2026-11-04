@@ -1,0 +1,25 @@
+# Web Framework
+flask
+
+# LangChain Framework
+langchain-core
+langchain-community
+langchain-classic
+langchain-text-splitters
+langchain-ollama
+
+# PDF Processing
+pypdf
+
+# Tokenization
+tiktoken
+
+# Vector Database
+faiss-cpu
+
+# Environment Variables
+python-dotenv
+
+# Markdown Rendering & Security
+markdown
+bleach
